@@ -5,6 +5,8 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 import time
 from datetime import datetime, timedelta
@@ -83,6 +85,10 @@ class archibus_scheduler():
         
         # Min Page Load Time
         self.driver.implicitly_wait(15) 
+
+        # Wait conditions
+        self.wait = WebDriverWait(self.driver, 10)
+
 
     # Known Popups
     def popups(self):
@@ -188,6 +194,11 @@ class archibus_scheduler():
             print(f'Searching for Building in Dropdown')
             time.sleep(10) # longer load on dropdown search
 
+            # Wait for the result count message to appear with "Search items returned"
+            self.wait.until(EC.text_to_be_present_in_element(
+                (By.XPATH, '//h3[@role="status"]'),"Search items returned"
+            ))
+            
             input_building = self.driver.find_element(By.XPATH, f"//div[contains(text(), '{self.building_name}')]")
             input_building.click()
             print(f'Selected Building')
