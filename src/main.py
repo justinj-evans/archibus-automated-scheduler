@@ -148,13 +148,16 @@ class archibus_scheduler():
         # Archibus Webpage
         self.driver.get("https://pathfinder.horizantsolutions.com/archibus/schema/ab-products/essential/workplace/index.html")
 
-        wait = WebDriverWait(self.driver, 30)
+        # Wait for full page load
+        WebDriverWait(self.driver, 10).until(
+            lambda d: d.execute_script("return document.readyState") == "complete"
+        )
 
         ## Login Page
-        input_username = wait.until(EC.presence_of_element_located((By.ID, 'logon-user-input')))
+        input_username = self.wait.until(EC.presence_of_element_located((By.ID, 'logon-user-input')))
         input_username.send_keys(self.username)
 
-        input_password = wait.until(EC.presence_of_element_located((By.ID, 'logon-password-input')))
+        input_password = self.wait.until(EC.presence_of_element_located((By.ID, 'logon-password-input')))
         input_password.send_keys(self.password)
 
         input_log_in = self.driver.find_element(By.CSS_SELECTOR, '[data-testid="logon-sign-in-btn"]') # 'logon-sign-in-btn'
