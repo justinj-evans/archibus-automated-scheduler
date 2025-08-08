@@ -10,7 +10,7 @@ runs:
     - name: Checkout composite action repository code
       uses: actions/checkout@v4
       with:
-        repository: justinj-evans/archibus-automated-scheduler
+        repository: justinj-evans/archibus-automated-scheduler@bugfix-10-logon # use ./ for local dev.
         clean: true
         path: composite-action-directory 
 
