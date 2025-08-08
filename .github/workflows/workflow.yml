@@ -15,6 +15,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Use Composite Action
-        uses: justinj-evans/archibus-automated-scheduler@main # use ./ for local dev.
+        uses: justinj-evans/archibus-automated-scheduler@bugfix-10-logon # use ./ for local dev.
         with:
           scheduling_args: ${{ secrets.ARCHIBUS_SCHEDULING_ARGS }}
