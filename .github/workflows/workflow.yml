@@ -3,8 +3,10 @@ name: Archibus-Automated-Scheduler
 on:
   workflow_dispatch:
   # # uncomment to activate scheduler
-  # schedule:
-  #   - cron: "0 5 * * 1,3,5"
+  schedule:
+    # - cron: "0 16 * * 2,3,4"
+    # - cron: '0 17 * * 2,3,4' # Runs at 12 PM (noon) EST from November to March
+    - cron: '0 16 * * 2,3,4' # Runs at 12 PM (noon) EDT from March to November
 
 jobs:
   archibus-automated-scheduler:
