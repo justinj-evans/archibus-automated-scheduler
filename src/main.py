@@ -14,6 +14,8 @@ import argparse
 import sys
 import ast
 
+from debug import debug_wait
+
 def parse_args():
     parser = argparse.ArgumentParser(description='action.yml arguments')
     parser.add_argument('--username', type=str, help='Username (case-insensitive)')
@@ -154,11 +156,16 @@ class archibus_scheduler():
         )
 
         ## Login Page
-        input_username = self.wait.until(EC.presence_of_element_located((By.ID, 'logon-user-input')))
+        input_username = debug_wait(self.driver, (By.ID, "logon-user-input"), timeout=30, label="login-username")
         input_username.send_keys(self.username)
 
-        input_password = self.wait.until(EC.presence_of_element_located((By.ID, 'logon-password-input')))
+        input_password = debug_wait(self.driver, (By.ID, "logon-password-input"), timeout=30, label="login-password")
         input_password.send_keys(self.password)
+        # input_username = self.wait.until(EC.presence_of_element_located((By.ID, 'logon-user-input')))
+        # input_username.send_keys(self.username)
+
+        # input_password = self.wait.until(EC.presence_of_element_located((By.ID, 'logon-password-input')))
+        # input_password.send_keys(self.password)
 
         input_log_in = self.driver.find_element(By.CSS_SELECTOR, '[data-testid="logon-sign-in-btn"]') # 'logon-sign-in-btn'
         input_log_in.click()

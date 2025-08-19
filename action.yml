@@ -97,6 +97,17 @@ runs:
         python composite-action-directory/src/main.py ${{ inputs.scheduling_args }}
       shell: bash
 
+    # Always upload debug artifacts, even if test fails
+    - name: Upload Selenium debug artifacts
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: selenium-debug
+        path: |
+          *_screenshot.png
+          *_page_source.html
+
+
     - name: Stop and Remove Selenium Container
       run: |
         docker stop selenium
