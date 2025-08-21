@@ -1,4 +1,8 @@
 # Archibus-Automated-Scheduler
+> [!CAUTION]
+> As of July 2025, Archibus blocks IP requests from GitHub Runners.  
+> Use this repository only for educational purposes.
+
 ![Latest Scheduled Run](https://github.com/justinj-evans/archibus-automated-scheduler/actions/workflows/workflow.yml/badge.svg)
 
 We’ve all been there — it's Monday morning, and you suddenly remember you forgot to book your workstation. Now you're rushing through Archibus, hoping workstation 28 isn’t already taken by that one colleague who always beats you to it.
